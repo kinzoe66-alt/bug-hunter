@@ -6,6 +6,10 @@ from runtime.mutation_probe import (
     execute_handler as mutation_probe_handler,
 )
 
+from runtime.anomaly_logger import (
+    execute_handler as anomaly_logger_handler,
+)
+
 
 DEFAULT_POLICY = {
     "required": True,
@@ -43,6 +47,21 @@ CAPABILITY_REGISTRY = {
         ),
         "policy": {
             **DEFAULT_POLICY,
+        },
+    },
+
+    "anomaly_logger": {
+        "handler": (
+            anomaly_logger_handler
+        ),
+        "description": (
+            "Anomaly logging"
+        ),
+        "policy": {
+            **DEFAULT_POLICY,
+            "requires_runtime_keys": [
+                "response",
+            ],
         },
     },
 }
