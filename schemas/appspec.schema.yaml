@@ -1,0 +1,78 @@
+type: object
+
+required:
+  - appspec
+  - runtime
+  - capabilities
+  - workflow
+  - constraints
+
+properties:
+
+  appspec:
+    type: object
+    required:
+      - id
+      - version
+    properties:
+      id:
+        type: string
+      version:
+        type: string
+
+  runtime:
+    type: object
+    required:
+      - target
+      - analysis_rules
+    properties:
+      target:
+        type: string
+      analysis_rules:
+        type: array
+        items:
+          type: string
+
+  capabilities:
+    type: object
+    required:
+      - allowed
+    properties:
+      allowed:
+        type: array
+        items:
+          type: string
+
+  workflow:
+    type: object
+    required:
+      - phases
+    properties:
+      phases:
+        type: array
+        items:
+          type: object
+          required:
+            - id
+            - activates
+          properties:
+            id:
+              type: string
+            activates:
+              type: array
+              items:
+                type: string
+            requires:
+              type: array
+              items:
+                type: string
+
+  constraints:
+    type: object
+    properties:
+      ordered_execution:
+        type: boolean
+      allow_phase_skipping:
+        type: boolean
+      allow_unknown_capabilities:
+        type: boolean

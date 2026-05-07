@@ -1,35 +1,20 @@
+import requests
 from runtime.result import RuntimeResult, STATUS_SUCCESS, STATUS_FAILURE
-from runtime.http_client import send_request
 import time
 
 def execute_handler(capability, appspec, runtime_memory):
-    """
-    Mutation Probe: tests for common HTTP header and payload injections.
-    """
     try:
+        # Example mutation probe: simple GET request
         url = appspec.get("runtime", {}).get("target")
         start = time.time()
-        response = send_request(url)
+        r = requests.get(url, timeout=5)
         end = time.time()
-
-        # Store results in runtime memory
         runtime_memory.set("response", {
-            "status": response.status_code,
-            "headers": dict(response.headers),
-            "body_hash": hash(response.text),
+            "status": r.status_code,
+            "headers": dict(r.headers),
+            "body_hash": hash(r.text),
             "elapsed": end - start,
         })
-
-        return RuntimeResult(
-            capability=capability,
-            success=True,
-            status=STATUS_SUCCESS,
-            data=runtime_memory.get("response")
-        )
+        return RuntimeResult(capability=capability, success=True, status=STATUS_SUCCESS, data=runtime_memory.get("response"))
     except Exception as e:
-        return RuntimeResult(
-            capability=capability,
-            success=False,
-            status=STATUS_FAILURE,
-            errors=[str(e)]
-        )
+        return RuntimeResult(capability=capability, success=False, status=STATUS_FAILURE, errors=[str(e)])

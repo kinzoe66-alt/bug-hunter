@@ -39,20 +39,10 @@ CAPABILITY_REGISTRY = {
             mutation_probe_handler
         ),
         "description": (
-            "Mutation-based probing"
+            "Mutation probing"
         ),
         "policy": {
             **DEFAULT_POLICY,
         },
     },
 }
-"mutation_probe": {
-    "handler": execute_handler,
-    "description": "HTTP mutation and header injection probe",
-    "policy": {
-        **DEFAULT_POLICY,
-        "replayable": True,
-        "requires_runtime_keys": ["response"],
-        "allow_skip_on_missing_dependencies": True,
-    },
-},

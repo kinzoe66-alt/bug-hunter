@@ -1,0 +1,46 @@
+appspec:
+  id: api_security
+  version: "0.1"
+
+runtime:
+  target: "https://invalid.localhost"
+  analysis_rules:
+    - status_code
+    - headers
+    - response_time
+
+capabilities:
+  allowed:
+    - route_analysis
+    - auth_validation
+    - security_scan
+    - reporting
+
+workflow:
+  phases:
+    - id: intake
+      activates:
+        - route_analysis
+
+    - id: validation
+      requires:
+        - intake
+      activates:
+        - auth_validation
+
+    - id: analysis
+      requires:
+        - validation
+      activates:
+        - security_scan
+
+    - id: reporting
+      requires:
+        - analysis
+      activates:
+        - reporting
+
+constraints:
+  ordered_execution: true
+  allow_phase_skipping: false
+  allow_unknown_capabilities: false

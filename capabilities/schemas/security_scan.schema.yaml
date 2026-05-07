@@ -1,0 +1,12 @@
+type: object
+
+required:
+  - analysis_rules
+
+properties:
+
+  analysis_rules:
+    type: array
+
+    items:
+      type: string
