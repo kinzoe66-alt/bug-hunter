@@ -1,0 +1,6 @@
+TRANSITIONS = {
+    "INTERPRET": "PROBE",
+    "PROBE": "COMPARE",
+    "COMPARE": "EVALUATE",
+    "EVALUATE": "COMPLETE"
+}
