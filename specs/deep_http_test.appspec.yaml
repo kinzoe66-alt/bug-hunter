@@ -1,0 +1,16 @@
+appspec:
+  id: deep_http_test
+  version: "0.1"
+
+runtime:
+  target: "https://example.com"
+
+capabilities:
+  allowed:
+    - deep_http_analysis
+
+workflow:
+  phases:
+    - id: test
+      activates:
+        - deep_http_analysis

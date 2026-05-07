@@ -44,3 +44,14 @@ CAPABILITY_REGISTRY = {
         "policy": {**DEFAULT_POLICY, "replayable": True, "requires_runtime_keys": ["cookies"]},
     },
 }
+
+"deep_http_analysis": {
+    "handler": execute_handler,
+    "description": "Deep HTTP analysis and fuzzing",
+    "policy": {
+        **DEFAULT_POLICY,
+        "replayable": True,
+        "requires_runtime_keys": [],
+        "allow_skip_on_missing_dependencies": False,
+    },
+},
