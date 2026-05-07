@@ -1,0 +1,20 @@
+{
+  "id": "0f2b45f5-2622-4dd9-b5fd-172399fdd0eb",
+  "timestamp": 1778165924.6106968,
+  "status": "COMPLETE",
+  "events": [
+    {
+      "capability": "deep_http_analysis",
+      "result": {
+        "capability": "deep_http_analysis",
+        "success": false,
+        "status": "FAILURE",
+        "data": null,
+        "errors": [
+          "HTTPSConnectionPool(host='example.com', port=443): Read timed out. (read timeout=5)"
+        ],
+        "timestamp": 1778165924.6095324
+      }
+    }
+  ]
+}
