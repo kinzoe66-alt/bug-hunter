@@ -1,4 +1,11 @@
-from runtime.handlers import execute_handler
+from runtime.deep_http_analysis import (
+    execute_handler as deep_http_analysis_handler,
+)
+
+from runtime.mutation_probe import (
+    execute_handler as mutation_probe_handler,
+)
+
 
 DEFAULT_POLICY = {
     "required": True,
@@ -12,45 +19,38 @@ DEFAULT_POLICY = {
     "requires_runtime_keys": [],
 }
 
+
 CAPABILITY_REGISTRY = {
 
     "deep_http_analysis": {
-        "handler": execute_handler,
-        "description": "Deep HTTP analysis and fuzzing",
-        "policy": {**DEFAULT_POLICY, "replayable": True, "requires_runtime_keys": ["response"]},
+        "handler": (
+            deep_http_analysis_handler
+        ),
+        "description": (
+            "Deep HTTP analysis"
+        ),
+        "policy": {
+            **DEFAULT_POLICY,
+        },
     },
 
-    "auth_bypass_probe": {
-        "handler": execute_handler,
-        "description": "Authentication bypass probing",
-        "policy": {**DEFAULT_POLICY, "replayable": True, "requires_runtime_keys": ["auth_response"]},
-    },
-
-    "sql_injection_detector": {
-        "handler": execute_handler,
-        "description": "SQL injection detection",
-        "policy": {**DEFAULT_POLICY, "replayable": True, "requires_runtime_keys": ["response"]},
-    },
-
-    "xss_fuzzer": {
-        "handler": execute_handler,
-        "description": "Cross-site scripting fuzzing",
-        "policy": {**DEFAULT_POLICY, "replayable": True, "requires_runtime_keys": ["response"]},
-    },
-
-    "session_hijack_probe": {
-        "handler": execute_handler,
-        "description": "Session hijacking analysis",
-        "policy": {**DEFAULT_POLICY, "replayable": True, "requires_runtime_keys": ["cookies"]},
+    "mutation_probe": {
+        "handler": (
+            mutation_probe_handler
+        ),
+        "description": (
+            "Mutation-based probing"
+        ),
+        "policy": {
+            **DEFAULT_POLICY,
+        },
     },
 }
-
-"deep_http_analysis": {
+"mutation_probe": {
     "handler": execute_handler,
-    "description": "Deep HTTP analysis and fuzzing",
+    "description": "Simulated mutation probe capability",
     "policy": {
         **DEFAULT_POLICY,
-        "replayable": True,
         "requires_runtime_keys": [],
         "allow_skip_on_missing_dependencies": False,
     },
