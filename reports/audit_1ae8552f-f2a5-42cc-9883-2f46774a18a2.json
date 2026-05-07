@@ -1,0 +1,36 @@
+{
+  "id": "1ae8552f-f2a5-42cc-9883-2f46774a18a2",
+  "timestamp": 1778163556.904594,
+  "status": "COMPLETE",
+  "events": [
+    {
+      "capability": "deep_http_analysis",
+      "result": {
+        "capability": "deep_http_analysis",
+        "success": true,
+        "status": "SUCCESS",
+        "data": {
+          "status": 200,
+          "headers": {
+            "Date": "Thu, 07 May 2026 14:19:16 GMT",
+            "Content-Type": "text/html",
+            "Transfer-Encoding": "chunked",
+            "Connection": "keep-alive",
+            "Server": "cloudflare",
+            "last-modified": "Wed, 06 May 2026 14:17:14 GMT",
+            "allow": "GET, HEAD",
+            "Age": "1391",
+            "cf-cache-status": "HIT",
+            "Content-Encoding": "gzip",
+            "CF-RAY": "9f80dbd32deadb62-LAX"
+          },
+          "body_hash": -4910945729177038618,
+          "body_length": 528,
+          "elapsed": 1.2308130264282227
+        },
+        "errors": [],
+        "timestamp": 1778163556.90384
+      }
+    }
+  ]
+}
